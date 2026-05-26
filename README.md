@@ -63,6 +63,32 @@
 - 三年对比总览
 - Prompt 工作流
 
+## 安装
+
+克隆仓库：
+
+```bash
+git clone https://github.com/tomot-ch/tianjin-geo-skill.git
+```
+
+复制到 Codex Skills：
+
+```bash
+mkdir -p ~/.codex/skills
+cp -r tianjin-geo-skill ~/.codex/skills/
+```
+
+## 使用示例
+
+```text
+请使用 tianjin-geo-skill 分析这道天津高考地理大题。
+输出：
+1. 标准答案
+2. 讲题稿
+3. 学生失分点
+4. 可迁移模板
+```
+
 ## 本轮结构补强
 
 本轮重点补齐以下薄弱处：
