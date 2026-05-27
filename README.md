@@ -29,6 +29,7 @@
 - 因果链：把“条件 → 地理过程 → 结果”整理成可复用链条。
 - 天津风格答案：使用高考阅卷更容易接受的规范表达。
 - 讲题稿：把复杂推理讲成高中生能听懂的话。
+- 个人口语讲题稿：在不牺牲术语和因果链的前提下，用老师个人讲题动作解释题目。
 - 学生易错点：记录常见误判、漏答、表达不规范和因果断裂。
 
 ## 目录说明
@@ -89,6 +90,82 @@ cp -r tianjin-geo-skill ~/.codex/skills/
 4. 可迁移模板
 ```
 
+个人口语讲题模式：
+
+```text
+请使用 tianjin-geo-skill 生成这道题的老师个人口语讲题稿。
+输出：
+1. 口语讲解
+2. 考试里写成的天津卷标准答案
+3. 易错提醒
+4. 可迁移规则
+```
+
+聊天记录蒸馏模式：
+
+```text
+请使用 prompts/distill_chat_records.md 处理这段已提供的讲题聊天记录。
+要求先匿名化，再提炼讲题流程、常用话术、纠错逻辑和口语转书面语规则。
+```
+
+真实聊天记录双线蒸馏模式：
+
+```text
+请使用 prompts/distill_chat_records_dual_line.md 处理这段题目与讲题记录。
+要求分成：
+1. 讲题风格线
+2. 知识点积累线
+并写入对应 references / templates / chains / extracted / examples。
+```
+
+## 个人口语风格层
+
+本仓库在“标准答案、天津卷规范语言、因果链推理”的基础上，新增个人口语讲题风格层。它的目标不是把答案说得更随意，而是把老师真实讲题中的教学动作沉淀下来：
+
+- 如何翻译设问。
+- 如何拆材料。
+- 如何把材料转成地理含义。
+- 如何补全因果链。
+- 如何纠正学生答案。
+- 如何把口语解释改写成天津卷规范表达。
+
+相关入口：
+
+- `references/my_oral_style_summary.md`：老师个人讲题风格总结。
+- `references/my_oral_phrase_bank.md`：服务讲题的话术库。
+- `templates/oral_teaching_template.md`：口语讲题稿模板。
+- `templates/oral_to_written_template.md`：口语转书面语模板。
+- `examples/my_teaching_cases/README.md`：真实讲题案例匿名化入库说明。
+- `prompts/distill_chat_records.md`：聊天记录蒸馏 prompt。
+- `prompts/generate_oral_explanation.md`：口语讲题稿生成 prompt。
+
+真实聊天记录必须先匿名化，只保留教学价值，不保存姓名、学校、手机号、微信号等隐私信息，也不保留无关闲聊。没有真实材料支撑的句子只能标注为“示例占位”。
+
+## 真实聊天记录双线蒸馏工作流
+
+后续上传题目与聊天记录时，按以下流程处理：
+
+1. 上传题目与聊天记录。
+2. 匿名化处理，删除学生姓名、头像、学校、手机号、微信号等隐私信息。
+3. 讲题风格线提炼：整理老师如何开头、回到材料、纠错、讲因果链、把专业词讲成人话、口语转书面语。
+4. 知识点线提炼：整理知识点名称、所属专题、材料关键词、核心因果链、易错辨析和可迁移题型。
+5. 写入对应文件：`references/`、`templates/`、`chains/`、`extracted/`、`examples/`。
+6. 后续持续迭代：题目5、题目6继续追加，不覆盖已有案例和规则。
+
+双线入口：
+
+- `prompts/distill_chat_records_dual_line.md`：双线蒸馏主 prompt。
+- `references/case_knowledge_accumulation.md`：知识点积累中转库。
+- `examples/my_teaching_cases/case_index.md`：真实讲题案例索引。
+
+处理原则：
+
+- 讲题风格和知识点积累必须分开。
+- 同一道题可以同时进入两条线。
+- 不把聊天原文直接塞进知识库。
+- 不确定的知识点标记为“待核查”。
+- 对用户纠正过的信息必须覆盖旧理解，例如：韭园是陕西，不是尼泊尔。
+
 ## 本轮结构补强
 
 本轮重点补齐以下薄弱处：
@@ -99,6 +176,30 @@ cp -r tianjin-geo-skill ~/.codex/skills/
 - `extracted/`：补齐农业、城市、气候、综合题、地貌、工业、港口交通等母题归纳。
 - `chains/`：补齐农业、城市、气候、生态、地貌、工业、港口交通等基础链条。
 - `prompts/`：新增可复用的分析、蒸馏、诊断和迭代 prompt。
+
+## 基础知识体系补强
+
+本仓库新增 `core_` 系列基础知识文件，用于补足真题蒸馏之外的底层知识框架。它们只作为通用知识依据和链条补丁，不替代已有真题蒸馏、母题库、因果链和天津卷语言模板。
+
+使用时不能直接照搬知识点，而要按照：
+
+```text
+知识点 → 材料条件 → 地理含义 → 因果链 → 天津卷答案话术
+```
+
+的方式，把基础知识转化为贴合材料、具有采分点意识的答案。
+
+新增文件包括：
+
+- `references/core_高中地理核心知识体系.md`
+- `references/core_知识点到答题链映射.md`
+- `chains/core_自然地理基础链.md`
+- `chains/core_人文地理基础链.md`
+- `chains/core_生态环境与国家安全链.md`
+- `templates/core_基础知识调用规则.md`
+- `examples/core_基础知识调用示例.md`
+- `prompts/codex_increment_import_prompt.md`
+- `prompts/codex_next_training_prompt.md`
 
 ## 母题库入口
 
@@ -122,10 +223,13 @@ cp -r tianjin-geo-skill ~/.codex/skills/
 4. `references/天津卷语言风格.md`
 5. `references/2022_2023_2025_试卷总览.md`
 6. `references/2020_2021_试卷总览.md`
-7. `chains/`
-8. `templates/`
-9. `papers/2020/`、`papers/2021/`、`papers/2022/`、`papers/2023/`、`papers/2024/`、`papers/2025/`
-10. `prompts/`
+7. `references/core_高中地理核心知识体系.md`
+8. `references/core_知识点到答题链映射.md`
+9. `chains/`
+10. `templates/`
+11. `papers/2020/`、`papers/2021/`、`papers/2022/`、`papers/2023/`、`papers/2024/`、`papers/2025/`
+12. `examples/core_基础知识调用示例.md`
+13. `prompts/`
 
 ## 2024 真题蒸馏入口
 

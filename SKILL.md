@@ -110,6 +110,18 @@
 
 2020、2021 年是天津新高考改革后的早期真题，具有主要参考价值，适合补足基础题型链、区域综合题链、地球运动和自然地理链。若 2020、2021 年规则与 2023 年及之后真题规则冲突，应优先采用 2023 年及之后规则。
 
+## 基础知识调用规则
+
+当真题链条、母题库或年份蒸馏不足以覆盖题目时，调用 `core_` 系列基础知识文件进行补充。基础知识只作为底层依据，不能直接整段照搬进答案；真题规则、天津卷话术和材料限定词始终优先。
+
+调用基础知识时必须经过：
+
+```text
+知识点 → 材料条件 → 地理含义 → 因果链 → 天津卷答案话术
+```
+
+也就是先判断题目涉及的知识点，再回到材料条件，解释其地理含义，串成因果链，最后改写为天津卷短句、分点、贴材料的答案。
+
 ## 2020、2021 新增读题规则
 
 - 看到“生态城、盐碱荒滩、林地分布在高地”，优先考虑盐碱化与水循环调节。
@@ -173,6 +185,9 @@
 - `chains/产业转移与回流链.md`
 - `chains/文化遗产保护性开发链.md`
 - `chains/北极环境变化链.md`
+- `chains/core_自然地理基础链.md`
+- `chains/core_人文地理基础链.md`
+- `chains/core_生态环境与国家安全链.md`
 
 ## 新增综合题作答链
 
@@ -202,6 +217,80 @@
 - 保护植被，涵养水源，减少水土流失。
 - 冰川面积减小，地表吸收太阳辐射增加，温室效应增强。
 
+## 真实讲题材料双线蒸馏
+
+后续处理真实讲题材料、聊天记录、语音转文字或截图整理时，必须同时进行两条线蒸馏，且两条线分开维护。同一道题可以同时进入两条线，但不要把所有内容都塞进一个案例文件。
+
+### 1. 讲题风格线
+
+提炼老师如何讲题：
+
+- 如何开头并翻译材料。
+- 如何让学生回到材料和设问对象。
+- 如何口语化解释专业概念。
+- 如何纠错，尤其是先承认相关性，再指出不是主因。
+- 如何讲因果链，补足中间过程。
+- 如何把口语说法转成天津卷规范表达。
+
+主要写入：
+
+- `references/my_oral_style_summary.md`
+- `references/my_oral_phrase_bank.md`
+- `templates/oral_teaching_template.md`
+- `templates/oral_to_written_template.md`
+- `examples/my_teaching_cases/`
+
+### 2. 知识点积累线
+
+提炼题目涉及的地理知识：
+
+- 知识点名称和所属专题。
+- 典型材料关键词。
+- 核心因果链。
+- 易错辨析。
+- 天津卷常见问法。
+- 可迁移题型。
+- 应进入的专题链、母题库和模板位置。
+
+主要写入：
+
+- `references/case_knowledge_accumulation.md`
+- 对应 `chains/*.md`
+- 对应 `extracted/*.md`
+- `references/knowledge_framework.md`
+- 必要时更新 `templates/tianjin_language.md`
+
+隐私要求：
+
+- 不保存学生姓名、头像、学校、手机号、微信号等隐私。
+- 不把聊天原文直接塞进知识库。
+- 用户纠正过的信息必须落实，例如“韭园是陕西，不是尼泊尔”。
+
+## 输出模式
+
+处理题目时可按任务选择两种输出模式：
+
+### standard_written_answer
+
+用于生成天津卷规范答案。要求：
+
+- 严格执行读题流程。
+- 短句、分点、贴材料。
+- 使用地理术语和天津卷常见规范表达。
+- 因果链完整，避免只写结论。
+- 不使用口语化废话。
+
+### oral_teaching_explanation
+
+用于生成老师个人口语讲题稿。要求：
+
+- 先翻译材料和设问，再拆材料，再把材料转成地理含义。
+- 用自然语言讲清楚“材料—设问—地理含义—因果链—答案”的过程。
+- 口语讲解不是随便聊天，不能为了模仿风格而堆口头禅。
+- 需要个人风格时，读取 `references/my_oral_style_summary.md` 和 `references/my_oral_phrase_bank.md`。
+- 每段口语解释后，尽量给出“考试里写成……”。
+- 最后必须落回天津卷规范表达。
+
 ## 2025 年使用提醒
 
 `papers/2025/` 当前来自扫描版资料，属于初步蒸馏版。使用 2025 年内容时，应把题干、选项、图中文字和答案细节视为待高清解析卷复核。
@@ -213,6 +302,8 @@
 - `templates/scoring_template.md`
 - `templates/tianjin_language.md`
 - `templates/answer_style.md`
+- `templates/oral_teaching_template.md`
+- `templates/oral_to_written_template.md`
 - `templates/原因类答题模板.md`
 - `templates/影响类答题模板.md`
 - `templates/措施类答题模板.md`
@@ -224,6 +315,7 @@
 - `templates/地貌成因类答题模板.md`
 - `templates/旅游资源评价类答题模板.md`
 - `templates/地球运动计算类答题模板.md`
+- `templates/core_基础知识调用规则.md`
 
 ## 当前参考文件索引
 
@@ -233,6 +325,8 @@
 - `references/天津卷语言风格.md`：已有语言风格补充。
 - `references/2022_2023_2025_试卷总览.md`：高权重年份总览。
 - `references/2020_2021_试卷总览.md`：新高考改革早期总览。
+- `references/core_高中地理核心知识体系.md`：补足真题蒸馏之外的底层知识框架。
+- `references/core_知识点到答题链映射.md`：把基础知识点映射为可调用的答题链入口。
 
 ## 当前 Prompt 索引
 
@@ -241,6 +335,8 @@
 - `prompts/diagnose_student_answer.md`：学生答案诊断 prompt。
 - `prompts/generate_tianjin_answer.md`：天津卷答案生成 prompt。
 - `prompts/update_skill_repository.md`：仓库迭代 prompt。
+- `prompts/codex_increment_import_prompt.md`：增量训练包导入 prompt。
+- `prompts/codex_next_training_prompt.md`：后续继续训练 prompt。
 
 ## 当前母题库索引
 
